@@ -1,0 +1,2 @@
+Startup data in the beginning, after that mode1 can be performed, perhaps mode3
+before every mode1, res has to be set low for a short time (691ms in test)
