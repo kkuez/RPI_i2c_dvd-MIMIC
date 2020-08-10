@@ -1,5 +1,6 @@
 package com;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,16 +28,20 @@ public class Data {
 
     public static List<Data> parse(InputStream inputStream) {
         List<Data> dataList = new ArrayList<>();
-        Scanner scanner = new Scanner(inputStream);
-        boolean validLine = false;
-        String line = "";
-        while(scanner.hasNext()) {
-            line = scanner.nextLine();
-            validLine = line.contains("Adress") && (line.contains("READ") || line.contains("WRITE")) && line
-                    .contains("Data");
-            if(validLine) {
-                dataList.add(parse(line));
+        try(inputStream;
+            Scanner scanner = new Scanner(inputStream);) {
+            boolean validLine = false;
+            String line = "";
+            while(scanner.hasNext()) {
+                line = scanner.nextLine();
+                validLine = line.contains("Adress") && (line.contains("READ") || line.contains("WRITE")) && line
+                        .contains("Data");
+                if(validLine) {
+                    dataList.add(parse(line));
+                }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return dataList;
     }
