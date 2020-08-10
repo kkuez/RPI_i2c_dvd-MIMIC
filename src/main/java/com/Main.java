@@ -21,7 +21,7 @@ public class Main {
         I2CBus bus = new I2CBus("/dev/i2c-1");
         I2CBuffer buffer = new I2CBuffer( 2 );
 
-        //SLAVE ADRESS SEEMS TO BE dec20!!
+        //SLAVE ADRESS SEEMS TO BE dec80!!
         //dez 80 => hex 50
         //dez 20 => hex 14
         bus.selectSlave(80);
